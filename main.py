@@ -19,6 +19,7 @@ game = Game()
 monsters = pygame.sprite.Group()
 projectiles = pygame.sprite.Group()
 game_is_running = True
+game_is_paused = False
 max_x = screen.get_width()
 min_x = 0
 
@@ -47,7 +48,7 @@ def update_monsters_position():
 
 
 def process_keys():
-    global game_is_running, projectiles
+    global game_is_running, projectiles, game_is_paused
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_is_running = False
@@ -60,17 +61,24 @@ def process_keys():
             if event.key == pygame.K_m:
                 mummy = Monster(max_x - 150, game.player.rect.y + 50)
                 monsters.add(mummy)
+            if event.key == pygame.K_p:
+                game_is_paused = not game_is_paused
+                print("Pause")
         elif event.type == pygame.KEYUP:
             game.pressed[event.key] = False
 
 
+
 def run_game():
     while game_is_running:
-        update_screen()
-        update_player_position()
-        update_projectile_position()
-        update_monsters_position()
+        if not game_is_paused:
+            update_screen()
+            update_player_position()
+            update_projectile_position()
+            update_monsters_position()
         process_keys()
+
+        
 
 
 run_game()
