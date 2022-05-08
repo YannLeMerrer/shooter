@@ -4,7 +4,7 @@ import pygame
 class Game:
 
     def __init__(self):
-        self.player = Player()
+        self.player = Player(self)
         self.pressed = {}
 
     def check_collision(self, sprite, group):

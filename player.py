@@ -20,5 +20,4 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.velocity
 
     def move_left(self):
-        if self.game.check_collision(self, self.main.20:31)
         self.rect.x -= self.velocity

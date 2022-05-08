@@ -8,7 +8,7 @@ def create_game_window():
     pygame.init()
 
     pygame.display.set_caption("Comet Fall Game")
-    window = pygame.display.set_mode((2090, 1080))
+    window = pygame.display.set_mode((1000, 1000))
     return window
 
 
