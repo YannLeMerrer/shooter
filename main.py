@@ -34,7 +34,8 @@ def update_screen():
 
 def update_player_position():
     if game.pressed.get(pygame.K_RIGHT) and game.player.rect.x < max_x - game.player.rect.width:
-        game.player.move_right()
+        if not game.check_collision(game.player, monsters):
+            game.player.move_right()
     elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x >= min_x:
         game.player.move_left()
 
@@ -59,7 +60,7 @@ def process_keys():
                 projectile = Projectile(game.player.rect.x + 150, game.player.rect.y + 100)
                 projectiles.add(projectile)
             if event.key == pygame.K_m:
-                mummy = Monster(max_x - 150, game.player.rect.y + 50)
+                mummy = Monster(max_x - 150, game.player.rect.y + 50, player=game.player)
                 monsters.add(mummy)
             if event.key == pygame.K_p:
                 game_is_paused = not game_is_paused
