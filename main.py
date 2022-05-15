@@ -45,12 +45,7 @@ def update_projectile_position():
 
 def update_monsters_position():
     monsters.update()
-    collisions = pygame.sprite.groupcollide(monsters, projectiles, True, True)
-    #for monster in monsters:
-     #   if collisions[monster]:
-      #      monster.kill()
-       #     for projectile in collisions[monster]:
-        #        projectile.kill()
+    pygame.sprite.groupcollide(monsters, projectiles, True, True, collided=pygame.sprite.collide_mask)
 
 def process_keys():
     global game_is_running, projectiles, game_is_paused
